@@ -54,7 +54,24 @@ class santhosh:
                         print("Party:{} , Total Votes:{}".format(party[j],vt))
                 state.append(st)
                 print()
+                
+    #total votes received acrossed the statewise
+    def statewise_tv(self,file):
+        self.file=pd.read_csv(file)
+        state=[]
+        tv=0
+        for i in range(len(self.file['state'])):
+            st=self.file['state'][i]
+            if st not in state:
+                  tv+=self.file['votes'][i]
+            if i+1<=len(self.file['state'])-1 and self.file['state'][i+1]!=st:
+                print("State:{}\nTotal Votes:{}".format(st,tv))
+                tv=0
+                state.append(st)
+                print()
+        print("State:{}\nTotal Votes:{}".format(st,tv)) 
 
 s=santhosh()
 s.won_party('C:/Users/vjrs1/PycharmProjects/mysql/governors_county_candidate.csv')
 s.statewise_parties_tv('C:/Users/vjrs1/PycharmProjects/mysql/governors_county_candidate.csv')
+s.statewise_tv('C:/Users/vjrs1/PycharmProjects/mysql/governors_county_candidate.csv')
