@@ -27,10 +27,10 @@ class santhosh:
                             rev.append(p)
                             vot.append(vt)
                         ind=vot.index(max(vot))
-                        print("State:{} Winning party:{}".format(st,rev[ind]))
+                        print("State:{}\nWinning party:{}\n".format(st,rev[ind]))
                         state.append(st)
                         
-    #total votes recieved by each parties in each state                   
+     #total votes recieved by each parties in each state
     def statewise_parties_tv(self,file):
         self.file=pd.read_csv(file)
         state=[]
@@ -44,16 +44,16 @@ class santhosh:
                     party.append(self.file['party'][j])
                     votes.append(self.file['votes'][j])
                 rev=[]
-                print("-------------------STATE:{}-------------------------".format(st))
+                print("\t STATE:{}\n".format(st))
                 for j in range(len(party)):
                     if party[j] not in rev:
                         rev.append(party[j])
                         vt=votes[j]
                         for k in range(j+1,len(party)):
                               if party[j]==party[k]:vt+=votes[k]
-                        print("Party:{} Total Votes:{}".format(party[j],vt))
-                print("---------------------------------------------------------------")
-                state.append(st)    
+                        print("Party:{} , Total Votes:{}".format(party[j],vt))
+                state.append(st)
+                print()
 
 s=santhosh()
 s.won_party('C:/Users/vjrs1/PycharmProjects/mysql/governors_county_candidate.csv')
