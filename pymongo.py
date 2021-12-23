@@ -31,7 +31,7 @@ s=santhosh()
 if s.valid():
     while True:
         print("-------------------------------Choices---------------------------------------------------------")
-        print("1.Insert\n2.View\n3.Updated\n4.Delete\n0.Exit")
+        print("1.Insert\n2.View\n3.Update\n4.Delete\n0.Exit")
         n=int(input("Enter Your Choices:"))
         if n==0:
             print("\t\t\t\tThank You!\n") 
