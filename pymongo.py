@@ -7,7 +7,7 @@ class santhosh:
         if self.connection:return True
         else:return False
 
-    def Inserted(self,db_name,collection_name,student_id,name,department):
+    def Insert(self,db_name,collection_name,student_id,name,department):
          data={'stud_id':student_id,'name':name,'dept':department}
          self.connection[db_name][collection_name].insert_one(data)
          print("Inserted Successfully...!")
@@ -31,7 +31,7 @@ s=santhosh()
 if s.valid():
     while True:
         print("-------------------------------Choices---------------------------------------------------------")
-        print("1.Inserted\n2.View\n3.Updated\n4.Delete\n0.Exit")
+        print("1.Insert\n2.View\n3.Updated\n4.Delete\n0.Exit")
         n=int(input("Enter Your Choices:"))
         if n==0:
             print("\t\t\t\tThank You!\n") 
@@ -40,7 +40,7 @@ if s.valid():
             stud_id=int(input("Enter the Student Id:"))
             stud_name=input("Enter the Name:")
             dep=input("Enter the Department Name:")
-            s.Inserted('demo','stud',stud_id,stud_name,dep)
+            s.Insert('demo','stud',stud_id,stud_name,dep)
         elif n==2:
             s.View('demo','stud')
         elif n==3:
