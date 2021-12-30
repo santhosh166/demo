@@ -1,0 +1,95 @@
+import psycopg2
+from tabulate import tabulate
+
+con=psycopg2.connect(host='localhost', user='postgres', password='123098', database='just')
+
+class san:
+
+    def connection(self):
+        if con:return True
+        else:return False
+
+    def cross_join(self,q):
+        res=con.cursor()
+        res.execute(q)
+        fetch=res.fetchall()
+        print(tabulate(fetch,headers=['name','course']))
+        print("="*50)
+
+    def inner_join(self,q):
+        res=con.cursor()
+        res.execute(q)
+        fetch=res.fetchall()
+        print(tabulate(fetch,headers=['name','course']))
+        print("="*50)
+
+    def left_join(self,q):
+        res=con.cursor()
+        res.execute(q)
+        fetch=res.fetchall()
+        print(tabulate(fetch,headers=['name','course']))
+        print("="*50)
+
+    def right_join(self,q):
+        res=con.cursor()
+        res.execute(q)
+        fetch=res.fetchall()
+        print(tabulate(fetch,headers=['name','course']))
+        print("="*50)
+
+    def full_join(self,q):
+        res=con.cursor()
+        res.execute(q)
+        fetch=res.fetchall()
+        print(tabulate(fetch,headers=['name','course']))
+        print("="*50)
+
+    def display_stud(self,q):
+        res=con.cursor()
+        res.execute(q)
+        fetch=res.fetchall()
+        print(tabulate(fetch,headers=['roll_no','name']))
+        print("="*50)
+
+    def display_course(self,q):
+        res=con.cursor()
+        res.execute(q)
+        fetch=res.fetchall()
+        print(tabulate(fetch,headers=['roll_no','course']))
+        print("="*50)
+
+ 
+s=san()
+if s.connection:
+    while True:
+        print("----Choices----")
+        print("1.cross join")
+        print("2.inner join")
+        print("3.left join")
+        print("4.right join")
+        print("5.full join")
+        print("6.display stud table")
+        print("7.display course table")
+        print("8.exit")
+        choice=int(input("enter your choice:"))
+        if choice==1:
+            s.cross_join("select stud.name,course.course from stud cross join course")
+        elif choice==2:
+            s.inner_join("select stud.name,course.course from stud inner join course on stud.roll_no=course.roll_no")
+        elif choice==3:
+            s.left_join("select stud.name,course.course from stud left join course on stud.roll_no=course.roll_no")
+        elif choice==4:
+            s.right_join("select stud.name,course.course from stud right join course on stud.roll_no=course.roll_no")
+        elif choice==5:
+            s.full_join("select stud.name,course.course from stud full join course on stud.roll_no=course.roll_no")
+        elif choice==6:
+            s.display_stud("select * from stud")
+        elif choice==7:
+            s.display_course("select * from course")
+        elif choice==8:
+            print("Thank you!")
+            break
+        else:
+            print("invalid input!")
+else:
+    print("Connection error try again!")
